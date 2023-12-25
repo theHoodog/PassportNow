@@ -93,13 +93,14 @@ def scrap_and_format(driver, periode):
                 '13_14_15_16':'Aucun rendez-vous disponible','17_18_19_20':'Aucun rendez-vous disponible'}
     
 
-def send_message(msg, TOKEN, chat_id, stored_msg={}):
+def send_message(msg, TOKEN, chat_id, stored_msg={'Centre_Tolbiac':'','01_02_03_04':'','05_06_07_08':'','09_10_11_12':'','13_14_15_16':'','17_18_19_20':''}):
     if msg != stored_msg:
         for key in msg:
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id['chat_id_global']}&text=<b>{key}</b>\n{msg[key]}&parse_mode=HTML"
             requests.get(url).json()
-            url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id[f'chat_id_{key.lower()}']}&text={msg[key]}&parse_mode=HTML"
-            requests.get(url).json()
+            if msg[key] != stored_msg[key]:
+                url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id[f'chat_id_{key.lower()}']}&text={msg[key]}&parse_mode=HTML"
+                requests.get(url).json()
         return msg
     print("Nothing new under the Sun")
     return stored_msg
@@ -135,24 +136,24 @@ param = {"TOKEN": '', "chat_ids": {'chat_id_global': '', 'chat_id_centre_tolbiac
                                    'chat_id_05_06_07_08':'','chat_id_09_10_11_12':'',
                                    'chat_id_13_14_15_16':'','chat_id_17_18_19_20':''},
          "driver": '', "link": '', "interval": 30,"email":'', "password":'', 'periode':''}
-try:
-    with open(f"{path}\parameters.txt", encoding="utf-8") as file:
-        print('File found')
-        for line in file:
-            parts = line.strip().split("==")
-            if len(parts) == 2:
-                variable_name, variable_value = parts
-                if 'chat_id' in variable_name:
-                    param['chat_ids'][variable_name] = variable_value
-                else:
-                    param[variable_name] = variable_value
+# try:
+with open(f"{path}\parameters.txt", encoding="utf-8") as file:
+    print('File found')
+    for line in file:
+        parts = line.strip().split("==")
+        if len(parts) == 2:
+            variable_name, variable_value = parts
+            if 'chat_id' in variable_name:
+                param['chat_ids'][variable_name] = variable_value
             else:
-                print("Vérifier le fichier de paramètrage.")
-                raise ValueError("Vérifier le fichier de paramètrage.")
-        if param["periode"] not in ['7', '14']:
-            raise ValueError("Période ne peut être que 7, 14 ou sans valeur (9 semaines).")
-        main_code(param)
+                param[variable_name] = variable_value
+        else:
+            print("Vérifier le fichier de paramètrage.")
+            raise ValueError("Vérifier le fichier de paramètrage.")
+    if param["periode"] not in ['7', '14']:
+        raise ValueError("Période ne peut être que 7, 14 ou sans valeur (9 semaines).")
+    main_code(param)
 
-except:
-     print("Vérifier le fichier de paramètrage.")
+# except:
+#      print("Vérifier le fichier de paramètrage.")
 
