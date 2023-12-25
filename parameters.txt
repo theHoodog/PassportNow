@@ -1,0 +1,15 @@
+TOKEN==#TOKEN du bot telegram.
+driver==#Chemin d'accès vers le driver Chromedriver.
+link==https://teleservices.paris.fr/rdvtitres/jsp/site/Portal.jsp?page=appointmentsearch
+interval==30#Intervalle de temps minimum entre deux connexions au site (Ne pas aller en dessous de 30 secondes par respect pour le site).
+email==#email de connexion du site.
+password==#mot de passe de connexion du site.
+chat_id_global==#chat_id du canal global
+chat_id_centre_tolbiac==#chat_id du canal Centre-Tolbiac
+chat_id_01_02_03_04==#chat_id du canal 01-02-03-04
+chat_id_05_06_07_08==#chat_id du canal 05-06-07-08
+chat_id_09_10_11_12==#chat_id du canal 09-10-11-12
+chat_id_13_14_15_16==#chat_id du canal 13-14-15-16
+chat_id_17_18_19_20==#chat_id du canal 17-18-19-20
+periode==14#Période max de recherche de rendez-vous (peut être 7, 14. Si rien n'est renseigné, les rendez-vous sont cherchés sur les 9 prochaines semaines).
+#SUPPRIMER CETTE LIGNE ET TOUT AUTRE TEXTE PRÉCÉDÉ D'UN # AVANT UTILISATION.
