@@ -30,3 +30,4 @@ Enfin, ce projet est un exemple de scraping intéressant et respectueux du site 
 
 <h2>Soutenir le projet</h2>
 <u>Vous pouvez soutenir le projet et son créateur.</u>
+<u>Tout est libre de droit, mais s'il-vous-plaît <b>veuillez ne pas utiliser ce code à des fins commerciales.</b></u>
